@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ciew2nxc3xx8e"]
+
+[ext_resource type="PackedScene" uid="uid://cmdj5j2exkl1d" path="res://scenes/battle/battle.tscn" id="1_battle"]
+[ext_resource type="Script" uid="uid://bvbuiwsnwbs" path="res://scripts/net/net_battle_controller.gd" id="2_script"]
+
+[node name="NetBattle" instance=ExtResource("1_battle")]
+script = ExtResource("2_script")

@@ -247,23 +247,11 @@ func _start() -> String:
 	var problem := start_problem()
 	if not problem.is_empty():
 		return problem
-	var typology := load("res://data/maps/typologies/%s.tres" % settings["typology"]) as MapTypology
-	var map := PvpMap.generate(int(settings["seed"]), typology, int(settings["size"]))
-	var side_a: Array[Dictionary] = []
-	var side_b: Array[Dictionary] = []
-	var order: Array[int] = []
-	for seat in seats_on(0):
-		side_a.append({"hero": seat.hero, "name": seat.name})
-		order.append(seat.id)
-	for seat in seats_on(1):
-		side_b.append({"hero": seat.hero, "name": seat.name})
-		order.append(seat.id)
-	var state := PvpBattle.create(map, side_a, side_b, hash([int(settings["seed"]), "battle"]))
-	if state == null:
+	var made := make_battle()
+	if made == null:
 		return "the battle couldn't be built"
-	battle = Battle.new(state)
-	battle.sudden_death_round = SUDDEN_DEATH_ROUND
-	battle.sudden_death_percent = SUDDEN_DEATH_PERCENT
+	battle = made
+	var order := _seat_order()
 	unit_of_seat.clear()
 	for index in order.size():
 		unit_of_seat[order[index]] = index
@@ -272,6 +260,35 @@ func _start() -> String:
 		seats[id].ready = false
 	phase = Phase.BATTLE
 	return ""
+
+
+## Seat ids in the order their units get ids: side A by seat id, then side B.
+func _seat_order() -> Array[int]:
+	var order: Array[int] = []
+	for side in 2:
+		for seat in seats_on(side):
+			order.append(seat.id)
+	return order
+
+
+## A fresh battle for the seats and settings as they are (before anyone has acted). A view builds its
+## own copy this way and replays the log on it.
+func make_battle() -> Battle:
+	var typology := load("res://data/maps/typologies/%s.tres" % settings["typology"]) as MapTypology
+	var map := PvpMap.generate(int(settings["seed"]), typology, int(settings["size"]))
+	var side_a: Array[Dictionary] = []
+	var side_b: Array[Dictionary] = []
+	for seat in seats_on(0):
+		side_a.append({"hero": seat.hero, "name": seat.name})
+	for seat in seats_on(1):
+		side_b.append({"hero": seat.hero, "name": seat.name})
+	var state := PvpBattle.create(map, side_a, side_b, hash([int(settings["seed"]), "battle"]))
+	if state == null:
+		return null
+	var fresh := Battle.new(state)
+	fresh.sudden_death_round = SUDDEN_DEATH_ROUND
+	fresh.sudden_death_percent = SUDDEN_DEATH_PERCENT
+	return fresh
 
 
 func _ready(entry: Dictionary) -> String:

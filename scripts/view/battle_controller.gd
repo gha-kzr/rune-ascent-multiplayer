@@ -691,8 +691,13 @@ func _on_event_played(event: BattleEvents.Event) -> void:
 		var unit := battle.state.units[(event as BattleEvents.TurnStarted).unit_id]
 		if unit.team == UnitState.Team.PLAYER:
 			sound.emit(&"turn_start")
-		hud.show_banner(tr("%s's turn") % tr(unit.data.display_name))
+		hud.show_banner(tr("%s's turn") % _turn_banner_name(unit))
 
+
+
+## Who the turn banner names: the unit's own name (multiplayer names the player instead).
+func _turn_banner_name(unit: UnitState) -> String:
+	return tr(unit.data.display_name)
 
 
 # --- State and highlights ---

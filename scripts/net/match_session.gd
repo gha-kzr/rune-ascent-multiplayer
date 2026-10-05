@@ -493,18 +493,17 @@ func _host_tick(delta: float) -> void:
 			_host_submit(my_id, {"k": "drop", "id": id})
 	if state.phase != MatchState.Phase.BATTLE or state.battle == null or state.is_over():
 		return
-	var battle_state := state.battle.state
-	if not battle_state.started:
-		if state.everyone_placed():
-			_host_submit(my_id, {"k": "go"})
-		return
-	_turn_elapsed += delta
 	for id in state.seat_ids():
 		var seat := state.seats[id]
 		if not seat.connected and not seat.ai and _now - _absent_since.get(id, _now) >= float(state.settings["grace"]):
 			_host_submit(my_id, {"k": "ai", "id": id, "v": true})
 		elif seat.ai and seat.returning and id != state.current_seat():
 			_host_submit(my_id, {"k": "ai", "id": id, "v": false})  # Back at a moment that isn't their hero's turn.
+	if not state.battle.state.started:
+		if state.everyone_placed():
+			_host_submit(my_id, {"k": "go"})
+		return
+	_turn_elapsed += delta
 	var current := state.current_seat()
 	if current == -1:
 		return
