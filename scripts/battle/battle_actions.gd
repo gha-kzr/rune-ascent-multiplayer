@@ -124,8 +124,8 @@ class CastSpell extends Action:
 		return in_area
 
 
-## Before the battle starts: moves a hero to a cell of the start zone, swapping with the
-## hero standing there, if any.
+## Before the battle starts: moves a hero to a cell of its start zone, swapping with a hero of its
+## team standing there, if any. In a PvP battle the ENEMY team places in its own zone too.
 class Place extends Action:
 	var cell: Vector2i
 
@@ -138,14 +138,15 @@ class Place extends Action:
 			return "the battle has started"
 		if actor_id < 0 or actor_id >= state.units.size():
 			return "unknown unit %d" % actor_id
-		if state.units[actor_id].team != UnitState.Team.PLAYER:
+		if state.units[actor_id].team != UnitState.Team.PLAYER and not state.pvp:
 			return "only heroes are placed"
 		if not state.units[actor_id].is_alive():
 			return "unit %d is dead" % actor_id
 		return _validate(state)
 
 	func _validate(state: BattleState) -> String:
-		if cell not in state.zone:
+		var zone := state.zone if state.units[actor_id].team == UnitState.Team.PLAYER else state.zone_enemy
+		if cell not in zone:
 			return "%s isn't in the start zone" % cell
 		return ""
 
@@ -155,7 +156,7 @@ class Place extends Action:
 			return []
 		var events: Array[BattleEvents.Event] = []
 		var other := state.unit_at(cell)
-		if other != null and other.team == UnitState.Team.PLAYER:
+		if other != null and other.team == unit.team:
 			other.cell = unit.cell
 			events.append(BattleEvents.UnitPlaced.new(other.id, other.cell))
 		unit.cell = cell

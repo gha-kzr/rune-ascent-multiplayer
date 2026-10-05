@@ -11,7 +11,7 @@ extends RefCounted
 ## its own ticks is skipped and the next one starts; otherwise it refills AP and MP.
 
 var state: BattleState
-## Stalemate safety net: from this round (0: never), each party unit loses
+## Stalemate safety net: from this round (0: never), each party unit (every unit in PvP) loses
 ## sudden_death_percent of its max HP at its turn start, so a stalled battle always ends.
 var sudden_death_round := 0
 var sudden_death_percent := 10
@@ -127,7 +127,7 @@ func is_sudden_death() -> bool:
 
 
 func _sudden_death(unit: UnitState) -> Array[BattleEvents.Event]:
-	if unit.team != UnitState.Team.PLAYER or not is_sudden_death() or not unit.is_alive():
+	if (unit.team != UnitState.Team.PLAYER and not state.pvp) or not is_sudden_death() or not unit.is_alive():
 		return []
 	var amount := mini(maxi(1, roundi(unit.max_hp() * sudden_death_percent / 100.0)), unit.hp)
 	unit.hp -= amount

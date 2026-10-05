@@ -22,6 +22,10 @@ var roll_bound := RollBound.NONE
 var zone: Array[Vector2i] = []
 ## Set by Battle.start(): placement is over.
 var started := false
+## A fight between two sets of human-controlled heroes (multiplayer): the ENEMY team places in
+## `zone_enemy` too, and sudden death hits every unit, not only the PLAYER team.
+var pvp := false
+var zone_enemy: Array[Vector2i] = []
 
 
 ## Places players in the map's player zone (Placement.default_cells: by role when the zone
@@ -135,5 +139,7 @@ func clone() -> BattleState:
 	copy.use_average_rolls = use_average_rolls
 	copy.roll_bound = roll_bound
 	copy.zone = zone.duplicate()
+	copy.pvp = pvp
+	copy.zone_enemy = zone_enemy.duplicate()
 	copy.started = started
 	return copy
