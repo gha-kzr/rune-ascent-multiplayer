@@ -10,8 +10,10 @@ static func stringify(message: Variant) -> String:
 
 ## The parsed value with whole numbers as ints; null for text that isn't JSON.
 static func parse(text: String) -> Variant:
-	var parsed: Variant = JSON.parse_string(text)
-	return ints(parsed)
+	var parser := JSON.new()
+	if parser.parse(text) != OK:
+		return null
+	return ints(parser.data)
 
 
 static func ints(value: Variant) -> Variant:
