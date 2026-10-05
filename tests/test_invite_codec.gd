@@ -24,6 +24,8 @@ func test_a_whole_link_decodes_like_the_bare_code() -> void:
 	assert_eq(InviteCodec.decode(link), data)
 	assert_eq(InviteCodec.decode("  " + code + "\n"), data, "spaces around it")
 	assert_eq(InviteCodec.decode("https://x.io/#reply=" + code + "&other=1"), data)
+	assert_eq(InviteCodec.decode("join=" + code), data, "just the fragment, as the page reads it")
+	assert_eq(InviteCodec.decode("reply=" + code), data)
 
 
 func test_garbage_decodes_to_nothing() -> void:

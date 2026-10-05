@@ -82,6 +82,7 @@ func test_the_title_screen_is_in_french_when_french_is_chosen() -> void:
 	var store := SettingsStore.new(SETTINGS)
 	assert_true(store.save(settings))
 	var game := GAME_SCENE.instantiate() as Game
+	game.play_opens_multiplayer = false  # These tests use the single-player hub.
 	game.require_click_to_start = false  # Straight to the title.
 	game.save_path = SAVE
 	game.settings_path = SETTINGS

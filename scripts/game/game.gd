@@ -62,6 +62,8 @@ var _battle_title := ""
 var _battle_music: StringName = &"battle"
 ## The hero whose tab the player picked last (kept when the hub is rebuilt).
 var _selected_hero := 0
+## The title's Play opens multiplayer; false opens the single-player hub that this fork keeps (tests use it).
+var play_opens_multiplayer := true
 ## The QA screen's choices, kept between its visits.
 var _qa_state := QaScreen.State.new()
 
@@ -83,7 +85,7 @@ func _ready() -> void:
 	if require_click_to_start:
 		show_start()
 	else:
-		show_title()
+		_open_first_screen()
 
 
 ## Web only: the click that lets the browser play sound comes before the title.
@@ -92,7 +94,30 @@ func show_start() -> void:
 	_replace_screen(start)
 	start.show_title(TITLE)
 	start.apply_branding(Branding.title_image())
-	start.started.connect(show_title)
+	start.started.connect(_open_first_screen)
+
+
+## After the first click: an invite link in the page's address goes straight to joining, anything else to the title.
+func _open_first_screen() -> void:
+	if WebPage.fragment().begins_with(InviteCodec.JOIN_KEY + "="):
+		show_multiplayer()
+	else:
+		show_title()
+
+
+## Multiplayer: the front page, joining, the lobby and the fight (NetFlow). Back leaves for the title.
+func show_multiplayer() -> void:
+	var flow := NetFlow.new()
+	flow.settings = settings
+	flow.exit_requested.connect(show_title)
+	flow.sound.connect(audio.play_sfx)
+	flow.speed_changed.connect(_on_settings_changed)
+	flow.music_requested.connect(audio.play_music)
+	_replace_screen(flow)
+	var fragment := WebPage.fragment()
+	flow.start(fragment)
+	if fragment.begins_with(InviteCodec.JOIN_KEY + "="):
+		WebPage.clear_fragment()
 
 
 ## The first screen. Play opens the hub, where a saved run waits as Continue / Abandon.
@@ -102,7 +127,7 @@ func show_title() -> void:
 	title.show_title(TITLE)
 	title.apply_branding(Branding.logo(), Branding.title_image())
 	title.show_best_floor(profile.best_depth)
-	title.play_pressed.connect(show_party)
+	title.play_pressed.connect(show_multiplayer if play_opens_multiplayer else show_party)
 	title.settings_pressed.connect(show_settings)
 	title.quit_pressed.connect(get_tree().quit)
 	title.show_qa(settings.qa_tools)

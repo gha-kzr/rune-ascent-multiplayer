@@ -194,6 +194,7 @@ func test_the_event_player_announces_what_to_hear() -> void:
 func _game() -> Game:
 	DirAccess.make_dir_recursive_absolute(SAVE.get_base_dir())
 	var game := GAME_SCENE.instantiate() as Game
+	game.play_opens_multiplayer = false  # These tests use the single-player hub.
 	game.require_click_to_start = false  # Straight to the title.
 	game.save_path = SAVE
 	game.settings_path = SETTINGS

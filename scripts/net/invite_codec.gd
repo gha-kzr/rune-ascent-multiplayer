@@ -54,14 +54,17 @@ static func decode(text: String) -> Dictionary:
 	return parsed if parsed is Dictionary else {}
 
 
-## The code inside a link (after `#join=` or `#reply=`), or the trimmed text itself.
+## The code inside a link (after `#join=` or `#reply=`), a fragment (`join=CODE`), or the trimmed text itself.
 static func extract_code(text: String) -> String:
 	var trimmed := text.strip_edges()
 	for key in [JOIN_KEY, REPLY_KEY]:
 		var marker := "%s=" % key
-		var at := trimmed.find(marker)
-		if at != -1 and trimmed.find("#") != -1 and at > trimmed.find("#") - 1:
-			trimmed = trimmed.substr(at + marker.length())
+		if trimmed.begins_with(marker):
+			trimmed = trimmed.substr(marker.length())
+			break
+		var at := trimmed.find("#" + marker)
+		if at != -1:
+			trimmed = trimmed.substr(at + 1 + marker.length())
 			break
 	var end := trimmed.find("&")
 	if end != -1:

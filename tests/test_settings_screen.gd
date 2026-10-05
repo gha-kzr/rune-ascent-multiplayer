@@ -205,6 +205,7 @@ func test_the_language_row_shows_and_changes_the_language() -> void:
 
 func test_the_credits_have_a_screen_of_their_own_reached_from_the_settings_and_left_by_the_back_arrow() -> void:
 	var game := (load("res://scenes/game/game.tscn") as PackedScene).instantiate() as Game
+	game.play_opens_multiplayer = false  # These tests use the single-player hub.
 	game.save_path = "user://test_settings_screen/profile.json"
 	game.settings_path = "user://test_settings_screen/settings.cfg"
 	DirAccess.make_dir_recursive_absolute("user://test_settings_screen")

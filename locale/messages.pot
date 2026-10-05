@@ -93,6 +93,10 @@ msgstr ""
 msgid "%s cleared! The tower now goes up to floor %d, and you can start at floor %d."
 msgstr ""
 
+#: scripts/game/net/net_lobby_screen.gd
+msgid "%s coming back"
+msgstr ""
+
 #: scripts/data/damage_effect.gd
 msgid "%s damage"
 msgstr ""
@@ -135,6 +139,10 @@ msgstr ""
 
 #: scripts/progression/settings_applier.gd
 msgid "%s is already used by %s."
+msgstr ""
+
+#: scripts/net/net_battle_controller.gd
+msgid "%s is away: the AI takes over soon"
 msgstr ""
 
 #: scripts/progression/settings_applier.gd
@@ -217,12 +225,32 @@ msgstr ""
 msgid "%s: %s.\n%s rune. Click to equip on the selected hero."
 msgstr ""
 
+#: scripts/net/net_battle_controller.gd scripts/net/net_status_panel.gd
+msgid "(AI)"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd scripts/net/net_status_panel.gd
+msgid "(away)"
+msgstr ""
+
 #: scripts/game/hub/hero_panel.gd scripts/game/spells_screen.gd
 msgid "(empty)"
 msgstr ""
 
+#: scripts/game/net/net_lobby_screen.gd
+msgid "(host)"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "(nobody to invite)"
+msgstr ""
+
 #: scripts/game/qa_screen.gd
 msgid "(none)"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd scripts/net/net_status_panel.gd
+msgid "(you)"
 msgstr ""
 
 #: scripts/game/run_screen.gd
@@ -243,6 +271,10 @@ msgstr ""
 
 #: scripts/progression/hints.gd
 msgid "A hero gained a level: its stats grow, and some levels teach a new spell."
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "A new player"
 msgstr ""
 
 #: scripts/game/game.gd
@@ -321,8 +353,12 @@ msgstr ""
 msgid "Automatic"
 msgstr ""
 
-#: scenes/game/achievements_screen.tscn scenes/game/credits_screen.tscn scenes/game/qa_screen.tscn scenes/game/settings_screen.tscn scenes/game/spells_screen.tscn
+#: scripts/game/net/net_menu_screen.gd scenes/game/achievements_screen.tscn scenes/game/credits_screen.tscn scenes/game/qa_screen.tscn scenes/game/settings_screen.tscn scenes/game/spells_screen.tscn
 msgid "Back"
+msgstr ""
+
+#: scripts/net/net_battle_controller.gd
+msgid "Back to the lobby"
 msgstr ""
 
 #: scripts/game/run_screen.gd
@@ -409,7 +445,7 @@ msgstr ""
 msgid "Brute"
 msgstr ""
 
-#: scripts/game/spells_screen.gd
+#: scripts/game/net/net_join_screen.gd scripts/game/spells_screen.gd
 msgid "Cancel"
 msgstr ""
 
@@ -475,6 +511,10 @@ msgstr ""
 msgid "Click a teal cell to place %s (Esc to deselect)"
 msgstr ""
 
+#: scripts/net/net_battle_controller.gd
+msgid "Click a teal cell to place your hero, then press Ready (%s)"
+msgstr ""
+
 #: scripts/view/hud/order_overlay.gd
 msgid "Click to look at this unit"
 msgstr ""
@@ -503,6 +543,14 @@ msgstr ""
 msgid "Common"
 msgstr ""
 
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Connect the player"
+msgstr ""
+
+#: scripts/game/net/net_flow.gd
+msgid "Connecting... the player appears in the list when it works."
+msgstr ""
+
 #: scripts/game/hub/destination_bar.gd
 msgid "Continue run"
 msgstr ""
@@ -513,6 +561,18 @@ msgstr ""
 
 #: scenes/game/settings_screen.tscn
 msgid "Controls"
+msgstr ""
+
+#: scripts/game/net/net_join_screen.gd scripts/game/net/net_lobby_screen.gd
+msgid "Copy the code"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Copy the invite link"
+msgstr ""
+
+#: scripts/game/net/net_join_screen.gd
+msgid "Copy the reply link"
 msgstr ""
 
 #: scripts/progression/qa_tools.gd
@@ -633,6 +693,10 @@ msgstr ""
 
 #: scripts/game/qa_screen.gd
 msgid "Fight it"
+msgstr ""
+
+#: scripts/game/net/net_menu_screen.gd
+msgid "Fight other players, one hero each. Nothing to install and no server: the players connect to each other directly."
 msgstr ""
 
 #: data/achievements/full_runes.tres
@@ -851,6 +915,10 @@ msgstr ""
 msgid "Holy"
 msgstr ""
 
+#: scripts/game/net/net_menu_screen.gd
+msgid "Host a match"
+msgstr ""
+
 #: scripts/game/hub/hero_panel.gd
 msgid "HP %d   AP %d   MP %d   Initiative %d"
 msgstr ""
@@ -883,6 +951,14 @@ msgstr ""
 msgid "Instant (skip animations)"
 msgstr ""
 
+#: scripts/game/net/net_menu_screen.gd
+msgid "Invite link or code"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Invite players"
+msgstr ""
+
 #: data/boons/iron_ward.tres
 msgid "Iron Ward"
 msgstr ""
@@ -893,6 +969,18 @@ msgstr ""
 
 #: scripts/progression/tutorial.gd
 msgid "It's your turn. Blue cells are where you can walk: each step costs MP. Click one."
+msgstr ""
+
+#: scripts/game/net/net_menu_screen.gd
+msgid "Join"
+msgstr ""
+
+#: scripts/game/net/net_menu_screen.gd
+msgid "Join a match"
+msgstr ""
+
+#: scripts/game/net/net_join_screen.gd
+msgid "Joining the match"
 msgstr ""
 
 #: scripts/data/move_effect.gd
@@ -929,7 +1017,7 @@ msgstr[1] ""
 msgid "learns %s"
 msgstr ""
 
-#: scenes/battle/hud.tscn
+#: scripts/game/net/net_lobby_screen.gd scenes/battle/hud.tscn
 msgid "Leave"
 msgstr ""
 
@@ -943,6 +1031,10 @@ msgstr ""
 
 #: scripts/data/rune_data.gd
 msgid "Legendary"
+msgstr ""
+
+#: scripts/net/net_status_panel.gd
+msgid "Let the AI play my hero"
 msgstr ""
 
 #: data/achievements/level_10.tres
@@ -973,12 +1065,28 @@ msgstr ""
 msgid "Mage"
 msgstr ""
 
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Make an invite"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Make an invite, send the link to a friend, then paste the reply they send back. Each player needs their own invite."
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Map and rules"
+msgstr ""
+
 #: data/statuses/marked.tres
 msgid "Marked"
 msgstr ""
 
 #: scenes/game/settings_screen.tscn
 msgid "Master volume"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Match lobby"
 msgstr ""
 
 #: data/spells/mend.tres
@@ -1013,6 +1121,14 @@ msgstr ""
 msgid "MP: movement points. Walking costs 1 per cell (and 1 more per step up); they refill every turn."
 msgstr ""
 
+#: scripts/game/net/net_menu_screen.gd
+msgid "Multiplayer"
+msgstr ""
+
+#: scripts/game/net/net_menu_screen.gd
+msgid "Multiplayer needs the web version of the game (it uses the browser's WebRTC)."
+msgstr ""
+
 #: data/units/mushroom_sage.tres
 msgid "Mushroom Sage"
 msgstr ""
@@ -1035,6 +1151,10 @@ msgstr ""
 
 #: scripts/game/hub/rune_stash.gd
 msgid "Need %d essence"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "New map"
 msgstr ""
 
 #: scripts/game/qa_screen.gd
@@ -1121,6 +1241,18 @@ msgstr ""
 msgid "Party"
 msgstr ""
 
+#: scripts/game/net/net_menu_screen.gd
+msgid "Paste an invite first."
+msgstr ""
+
+#: scripts/game/net/net_menu_screen.gd
+msgid "Paste the invite link or code the host sent you. You will get a reply to send back to them."
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Paste the reply link or code here"
+msgstr ""
+
 #: data/damage_types/physical.tres
 msgid "Physical"
 msgstr ""
@@ -1157,6 +1289,14 @@ msgstr ""
 msgid "Play again"
 msgstr ""
 
+#: scripts/net/net_status_panel.gd
+msgid "Play my hero again"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd scripts/net/net_status_panel.gd
+msgid "Players"
+msgstr ""
+
 #: scripts/game/qa_screen.gd
 msgid "Playground"
 msgstr ""
@@ -1183,6 +1323,14 @@ msgstr ""
 
 #: scripts/data/glossary.gd
 msgid "Power: percent added to the damage and heals of the unit's spells."
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Preparing the invite... (a few seconds)"
+msgstr ""
+
+#: scripts/game/net/net_join_screen.gd
+msgid "Preparing your reply... (a few seconds)"
 msgstr ""
 
 #: scripts/game/settings_screen.gd
@@ -1301,8 +1449,16 @@ msgstr ""
 msgid "Reach floor 40 of the tower."
 msgstr ""
 
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Ready"
+msgstr ""
+
 #: scripts/view/hud.gd
 msgid "Ready (%s)"
+msgstr ""
+
+#: scripts/net/net_battle_controller.gd
+msgid "Ready. Waiting for the other players..."
 msgstr ""
 
 #: scenes/game/settings_screen.tscn
@@ -1433,6 +1589,14 @@ msgstr ""
 msgid "Save reset."
 msgstr ""
 
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Send this link to the player. When they send a reply back, paste it below."
+msgstr ""
+
+#: scripts/game/net/net_join_screen.gd
+msgid "Send this reply to the host. You are connected as soon as they paste it."
+msgstr ""
+
 #: scripts/game/qa_screen.gd
 msgid "Set every hero to this level"
 msgstr ""
@@ -1463,6 +1627,10 @@ msgstr ""
 
 #: scenes/game/settings_screen.tscn
 msgid "Show hints again"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Side A"
 msgstr ""
 
 #: scripts/view/hud.gd
@@ -1585,6 +1753,10 @@ msgstr ""
 msgid "Start a tower run at this floor"
 msgstr ""
 
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Start the match"
+msgstr ""
+
 #: scenes/battle/hud.tscn
 msgid "Stay"
 msgstr ""
@@ -1701,6 +1873,14 @@ msgstr ""
 msgid "The floor's own"
 msgstr ""
 
+#: scripts/game/net/net_lobby_screen.gd
+msgid "The match is going on."
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "The match is over: waiting for the host to open a new lobby."
+msgstr ""
+
 #: scripts/run/run_director.gd
 msgid "The party is fully healed."
 msgstr ""
@@ -1777,6 +1957,10 @@ msgstr ""
 msgid "Turn order"
 msgstr ""
 
+#: scripts/net/net_status_panel.gd
+msgid "Turn: %d s"
+msgstr ""
+
 #: scenes/game/settings_screen.tscn
 msgid "UI scale"
 msgstr ""
@@ -1811,6 +1995,10 @@ msgstr ""
 
 #: data/spells/wail.tres
 msgid "Wail"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Waiting for the host to start. Pick your hero and side, then press Ready."
 msgstr ""
 
 #: data/units/warg.tres
@@ -1873,6 +2061,14 @@ msgstr ""
 msgid "Yeti"
 msgstr ""
 
+#: scripts/game/net/net_lobby_screen.gd
+msgid "You are the host. Not ready to start yet: %s."
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "You are the host: start when everyone is ready."
+msgstr ""
+
 #: scripts/progression/tutorial.gd
 msgid "You found a rune! Click it in the stash to equip it on the selected hero."
 msgstr ""
@@ -1891,6 +2087,10 @@ msgstr ""
 
 #: scripts/progression/tutorial.gd
 msgid "Your heroes stand on the teal cells. Press Ready ({end_turn}) to start the fight."
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Your name"
 msgstr ""
 
 #: scripts/data/apply_status_effect.gd

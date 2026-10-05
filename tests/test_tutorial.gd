@@ -362,6 +362,7 @@ func test_no_tip_competes_with_a_tutorial_step() -> void:
 
 func test_elite_and_boss_floors_open_with_their_tip_and_a_level_up_shows_its_own() -> void:
 	var game := (load("res://scenes/game/game.tscn") as PackedScene).instantiate() as Game
+	game.play_opens_multiplayer = false  # These tests use the single-player hub.
 	game.save_path = "user://test_tutorial/profile.json"
 	game.settings_path = "user://test_tutorial/settings.cfg"
 	DirAccess.make_dir_recursive_absolute("user://test_tutorial")
@@ -419,6 +420,7 @@ func test_a_tutorial_step_hides_a_tip_card_and_the_start_screen_ignores_escape_a
 
 func test_a_stage_opens_with_its_own_tip_not_the_boss_floor_one() -> void:
 	var game := (load("res://scenes/game/game.tscn") as PackedScene).instantiate() as Game
+	game.play_opens_multiplayer = false  # These tests use the single-player hub.
 	game.save_path = "user://test_tutorial/profile.json"
 	game.settings_path = "user://test_tutorial/settings.cfg"
 	DirAccess.make_dir_recursive_absolute("user://test_tutorial")

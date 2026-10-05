@@ -20,6 +20,7 @@ func _game() -> Game:
 
 func _open() -> Game:
 	var game := GAME_SCENE.instantiate() as Game
+	game.play_opens_multiplayer = false  # These tests use the single-player hub.
 	game.save_path = SAVE
 	game.settings_path = SETTINGS
 	game.rng_seed = 5
@@ -268,6 +269,7 @@ func test_the_game_opens_on_the_title_and_play_opens_the_hub() -> void:
 	DirAccess.make_dir_recursive_absolute(SAVE.get_base_dir())
 	SaveStore.new(SAVE).delete()
 	var game := GAME_SCENE.instantiate() as Game
+	game.play_opens_multiplayer = false  # These tests use the single-player hub.
 	game.require_click_to_start = false  # Straight to the title.
 	game.save_path = SAVE
 	game.settings_path = SETTINGS
@@ -575,6 +577,7 @@ func test_a_web_build_asks_for_a_click_before_the_title_and_the_music_waits_for_
 	SaveStore.new(SAVE).delete()
 	SettingsStore.new(SETTINGS).delete()
 	var game := GAME_SCENE.instantiate() as Game
+	game.play_opens_multiplayer = false  # These tests use the single-player hub.
 	game.save_path = SAVE
 	game.settings_path = SETTINGS
 	_tree().root.add_child(game)
@@ -588,6 +591,7 @@ func test_a_web_build_asks_for_a_click_before_the_title_and_the_music_waits_for_
 
 func test_the_start_screen_is_on_by_default_everywhere() -> void:
 	var game := GAME_SCENE.instantiate() as Game
+	game.play_opens_multiplayer = false  # These tests use the single-player hub.
 	assert_true(game.require_click_to_start, "web and desktop open the same way")
 	game.free()
 

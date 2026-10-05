@@ -96,6 +96,7 @@ func _open(qa_on: bool) -> Game:
 	settings.battle_speed = Settings.BattleSpeed.INSTANT
 	SettingsStore.new(SETTINGS).save(settings)
 	var game := GAME_SCENE.instantiate() as Game
+	game.play_opens_multiplayer = false  # These tests use the single-player hub.
 	game.save_path = SAVE
 	game.settings_path = SETTINGS
 	game.rng_seed = 5
