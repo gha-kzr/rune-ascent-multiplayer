@@ -1204,6 +1204,9 @@ msgstr "Rester"
 msgid "Stone Skin Rune"
 msgstr "Rune de peau de pierre"
 
+msgid "Sudden death: every hero loses %d%% HP every turn"
+msgstr "Mort subite : chaque héros perd %d %% de ses PV à chaque tour"
+
 msgid "Sudden death: the party loses %d%% HP every turn"
 msgstr "Mort subite : l'équipe perd %d%% de ses PV à chaque tour"
 

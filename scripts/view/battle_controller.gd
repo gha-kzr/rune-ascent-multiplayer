@@ -193,24 +193,10 @@ func _ready() -> void:
 ## Builds a fresh battle from the encounter and the players, and starts it.
 ## Returns false (and changes nothing) if the encounter or teams are invalid.
 func start_battle() -> bool:
-	if encounter == null or encounter.map == null:
-		push_error("Battle: no encounter or map set")
-		return false
-	var errors := encounter.get_validation_errors()
-	if not errors.is_empty():
-		push_error("Battle: invalid encounter: %s" % "; ".join(errors))
-		return false
-	var parsed := encounter.map.parse()
-	var builds := encounter.builds()
-	var enemies: Array[UnitData] = []
-	for build in builds:
-		enemies.append(build.unit)
-	var new_seed := rng_seed if rng_seed != 0 else randi()
-	var battle_state := BattleState.create(parsed, players, enemies, new_seed, player_modifiers, builds, player_hp)
+	var battle_state := _create_battle_state()
 	if battle_state == null:
-		return false  # BattleState.create reported why.
+		return false  # Whoever made it reported why.
 	event_player.stop()  # Abandon the previous battle's playback, if any.
-	battle_seed = new_seed
 	_battle_generation += 1
 	battle = Battle.new(battle_state)
 	battle.sudden_death_round = sudden_death_round
@@ -223,7 +209,7 @@ func start_battle() -> bool:
 	camera_rig.set_bounds(Rect2(Vector2.ZERO, Vector2(battle_state.grid.size - Vector2i.ONE) * BoardView.CELL_SIZE))
 	camera_rig.fit_board(battle_state.grid.size)
 	# A third of the way to the start zone: on a big board the heroes stay clear of the HUD.
-	var zone_center := _spawn_center(parsed.player_spawns)
+	var zone_center := _spawn_center(_placement_zone_for_camera(battle_state))
 	camera_rig.focus(board_view.center().lerp(zone_center, START_FOCUS_TOWARD_ZONE))
 	camera_rig.face_toward(zone_center - board_view.center())
 	hud.hide_result()
@@ -235,6 +221,36 @@ func start_battle() -> bool:
 	if not opening_tip.is_empty():
 		_show_tip(opening_tip, _unit_spotlight(_first_enemy_id()))  # The elite or boss opens the enemy list.
 	return true
+
+
+## The state of the battle about to start, from the encounter and the players; null (with an error) if they
+## are invalid. The multiplayer controller overrides it with the match's.
+func _create_battle_state() -> BattleState:
+	if encounter == null or encounter.map == null:
+		push_error("Battle: no encounter or map set")
+		return null
+	var errors := encounter.get_validation_errors()
+	if not errors.is_empty():
+		push_error("Battle: invalid encounter: %s" % "; ".join(errors))
+		return null
+	var parsed := encounter.map.parse()
+	var builds := encounter.builds()
+	var enemies: Array[UnitData] = []
+	for build in builds:
+		enemies.append(build.unit)
+	var new_seed := rng_seed if rng_seed != 0 else randi()
+	battle_seed = new_seed
+	return BattleState.create(parsed, players, enemies, new_seed, player_modifiers, builds, player_hp)
+
+
+## The cells the camera starts toward (the heroes' start zone).
+func _placement_zone_for_camera(battle_state: BattleState) -> Array[Vector2i]:
+	return battle_state.zone
+
+
+## The cells to show as the start zone while heroes are placed.
+func _placement_zone() -> Array[Vector2i]:
+	return battle.state.zone
 
 
 ## Auto (QA tools): the AI plays the heroes from their next decision on; switched off, the
@@ -666,7 +682,10 @@ func _on_event_played(event: BattleEvents.Event) -> void:
 		_focus_turn_start((event as BattleEvents.TurnStarted).unit_id)  # Every turn, ally or enemy: the camera follows the action.
 	if event is BattleEvents.TurnStarted and battle.is_sudden_death() and not _sudden_death_announced:
 		_sudden_death_announced = true
-		hud.show_banner(tr("Sudden death: the party loses %d%% HP every turn") % sudden_death_percent)
+		if battle.state.pvp:
+			hud.show_banner(tr("Sudden death: every hero loses %d%% HP every turn") % sudden_death_percent)
+		else:
+			hud.show_banner(tr("Sudden death: the party loses %d%% HP every turn") % sudden_death_percent)
 		return
 	if event is BattleEvents.TurnStarted:
 		var unit := battle.state.units[(event as BattleEvents.TurnStarted).unit_id]
@@ -699,7 +718,7 @@ func _set_state(new_state: State) -> void:
 	match new_state:
 		State.PLACING:
 			units_view.set_active(_placing_hero)
-			board_view.show_highlight(BoardView.Highlight.ZONE, battle.state.zone)
+			board_view.show_highlight(BoardView.Highlight.ZONE, _placement_zone())
 		State.IDLE:
 			_reach = Movement.reach(battle.state, unit_id)
 			board_view.show_highlight(BoardView.Highlight.REACH, _reach.cells())

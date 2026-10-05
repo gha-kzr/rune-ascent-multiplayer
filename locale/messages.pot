@@ -1594,6 +1594,10 @@ msgid "Stone Skin Rune"
 msgstr ""
 
 #: scripts/view/battle_controller.gd
+msgid "Sudden death: every hero loses %d%% HP every turn"
+msgstr ""
+
+#: scripts/view/battle_controller.gd
 msgid "Sudden death: the party loses %d%% HP every turn"
 msgstr ""
 
