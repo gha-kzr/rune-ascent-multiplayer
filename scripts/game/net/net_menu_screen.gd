@@ -53,11 +53,11 @@ func _ready() -> void:
 	var how := Label.new()
 	how.theme_type_variation = &"SmallLabel"
 	how.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	how.text = "Paste the invite link or code the host sent you. You will get a reply to send back to them."
+	how.text = "Type the room code the host gave you (or paste their room link). With an invite link instead, you will get a reply to send back to them."
 	box.add_child(how)
 	_code_edit = LineEdit.new()
 	_code_edit.name = "CodeEdit"
-	_code_edit.placeholder_text = "Invite link or code"
+	_code_edit.placeholder_text = "Room code, or invite link"
 	_code_edit.custom_minimum_size = Vector2(0, 44)
 	_code_edit.text_submitted.connect(func(_text: String) -> void: _on_join())
 	box.add_child(_code_edit)
@@ -112,7 +112,7 @@ func _on_host() -> void:
 func _on_join() -> void:
 	var text := _code_edit.text.strip_edges()
 	if text.is_empty():
-		_status.text = "Paste an invite first."
+		_status.text = "Enter a room code or paste an invite first."
 		return
 	_save_name()
 	join_requested.emit(player_name(), text)

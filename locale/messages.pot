@@ -547,6 +547,10 @@ msgstr ""
 msgid "Connect the player"
 msgstr ""
 
+#: scripts/game/net/net_join_screen.gd
+msgid "Connected relays: %s"
+msgstr ""
+
 #: scripts/game/net/net_flow.gd
 msgid "Connecting... the player appears in the list when it works."
 msgstr ""
@@ -573,6 +577,10 @@ msgstr ""
 
 #: scripts/game/net/net_join_screen.gd
 msgid "Copy the reply link"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Copy the room link"
 msgstr ""
 
 #: scripts/progression/qa_tools.gd
@@ -653,6 +661,10 @@ msgstr ""
 
 #: scripts/game/qa_screen.gd
 msgid "Enemies (they take the board's spawns)"
+msgstr ""
+
+#: scripts/game/net/net_menu_screen.gd
+msgid "Enter a room code or paste an invite first."
 msgstr ""
 
 #: scripts/data/rune_data.gd
@@ -801,6 +813,10 @@ msgstr ""
 
 #: scripts/game/run_screen.gd
 msgid "Found: %s."
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Friends can join with the room code. If that doesn't work for them (a strict network), make an invite, send the link, then paste the reply they send back: each player needs their own invite."
 msgstr ""
 
 #: scripts/game/hub/destination_bar.gd
@@ -959,10 +975,6 @@ msgstr ""
 msgid "Instant (skip animations)"
 msgstr ""
 
-#: scripts/game/net/net_menu_screen.gd
-msgid "Invite link or code"
-msgstr ""
-
 #: scripts/game/net/net_lobby_screen.gd
 msgid "Invite players"
 msgstr ""
@@ -1065,6 +1077,10 @@ msgstr ""
 msgid "Loadout: the spells brought to a fight (slot 1 is key 1)"
 msgstr ""
 
+#: scripts/game/net/net_join_screen.gd
+msgid "Looking for the room... The host answers as soon as they see you."
+msgstr ""
+
 #: scripts/view/hud.gd
 msgid "Lose now"
 msgstr ""
@@ -1075,10 +1091,6 @@ msgstr ""
 
 #: scripts/game/net/net_lobby_screen.gd
 msgid "Make an invite"
-msgstr ""
-
-#: scripts/game/net/net_lobby_screen.gd
-msgid "Make an invite, send the link to a friend, then paste the reply they send back. Each player needs their own invite."
 msgstr ""
 
 #: scripts/game/net/net_lobby_screen.gd
@@ -1263,14 +1275,6 @@ msgstr ""
 
 #: scripts/game/run_screen.gd scenes/game/party_screen.tscn
 msgid "Party"
-msgstr ""
-
-#: scripts/game/net/net_menu_screen.gd
-msgid "Paste an invite first."
-msgstr ""
-
-#: scripts/game/net/net_menu_screen.gd
-msgid "Paste the invite link or code the host sent you. You will get a reply to send back to them."
 msgstr ""
 
 #: scripts/game/net/net_lobby_screen.gd
@@ -1539,6 +1543,14 @@ msgstr ""
 
 #: scripts/view/hud/unit_card.gd
 msgid "Role: %s"
+msgstr ""
+
+#: scripts/game/net/net_menu_screen.gd
+msgid "Room code, or invite link"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Room code: %s"
 msgstr ""
 
 #: scripts/view/hud.gd
@@ -1837,6 +1849,10 @@ msgstr ""
 msgid "Swift Stride"
 msgstr ""
 
+#: scripts/game/net/net_join_screen.gd
+msgid "Taking long? Ask the host for an invite link instead."
+msgstr ""
+
 #: scripts/data/enemy_data.gd
 msgid "Tank"
 msgstr ""
@@ -2027,6 +2043,10 @@ msgstr ""
 
 #: scripts/net/net_status_panel.gd
 msgid "Turn: %d s"
+msgstr ""
+
+#: scripts/game/net/net_menu_screen.gd
+msgid "Type the room code the host gave you (or paste their room link). With an invite link instead, you will get a reply to send back to them."
 msgstr ""
 
 #: scenes/game/settings_screen.tscn

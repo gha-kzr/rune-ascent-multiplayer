@@ -12,6 +12,10 @@ var session: MatchSession
 
 var _banner: Label
 var _name_edit: LineEdit
+var _room_label: Label
+var _room_link := ""
+var _room_code := ""
+var _copy_room: Button
 var _players: VBoxContainer
 var _typology: OptionButton
 var _size: SpinBox
@@ -155,10 +159,20 @@ func _build_invite(parent: Control) -> void:
 	title.theme_type_variation = &"PromptLabel"
 	title.text = "Invite players"
 	parent.add_child(title)
+	_room_label = Label.new()
+	_room_label.name = "RoomCode"
+	_room_label.theme_type_variation = &"PromptLabel"
+	_room_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_room_label.hide()
+	parent.add_child(_room_label)
+	_copy_room = HubStyle.button("Copy the room link", "CopyRoom")
+	_copy_room.pressed.connect(func() -> void: WebPage.copy(_room_link))
+	_copy_room.hide()
+	parent.add_child(_copy_room)
 	var how := Label.new()
 	how.theme_type_variation = &"SmallLabel"
 	how.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	how.text = "Make an invite, send the link to a friend, then paste the reply they send back. Each player needs their own invite."
+	how.text = "Friends can join with the room code. If that doesn't work for them (a strict network), make an invite, send the link, then paste the reply they send back: each player needs their own invite."
 	parent.add_child(how)
 	var row := HBoxContainer.new()
 	parent.add_child(row)
@@ -389,6 +403,15 @@ func show_invite(code: String, link: String) -> void:
 	_reply.text = ""
 	_reply.show()
 	_connect.show()
+
+
+## The room code, to read out or share as a link (anyone who has it can join).
+func show_room(code: String, link: String) -> void:
+	_room_code = code
+	_room_link = link
+	_room_label.text = tr("Room code: %s") % RoomCode.pretty(code)
+	_room_label.show()
+	_copy_room.show()
 
 
 func show_invite_message(text: String) -> void:

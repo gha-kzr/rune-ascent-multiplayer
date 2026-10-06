@@ -59,3 +59,14 @@ func test_a_changed_or_forged_message_opens_to_nothing() -> void:
 		assert_eq(RoomCrypto.open(Marshalls.raw_to_base64(changed), "abcdefghjkmn"), "", "byte %d changed" % index)
 	for bad in ["", "AAAA", "not base64!!", Marshalls.raw_to_base64(PackedByteArray([1, 2, 3])), Marshalls.raw_to_base64(raw.slice(0, 40))]:
 		assert_eq(RoomCrypto.open(bad, "abcdefghjkmn"), "", "garbage")
+
+
+func test_tracker_ids_are_always_twenty_printable_characters_that_survive_json() -> void:
+	for i in 600:
+		var ids := [RoomCode.random_peer_id(), RoomCode.info_hash(RoomCode.generate())]
+		for id: String in ids:
+			assert_eq(id.length(), 20)
+			for character in id:
+				assert_true(character.unicode_at(0) >= 32 and character.unicode_at(0) < 256)
+			var back: Variant = NetJson.parse(NetJson.stringify({"id": id}))
+			assert_eq(back["id"], id, "the same after JSON")

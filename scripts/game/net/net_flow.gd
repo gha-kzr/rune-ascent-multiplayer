@@ -30,6 +30,7 @@ func start(fragment := "") -> void:
 	if link_factory != null:
 		hub.factory = link_factory
 	add_child(hub)
+	hub.session_started.connect(_wire_session)
 	hub.invite_ready.connect(_on_invite_ready)
 	hub.reply_ready.connect(_on_reply_ready)
 	hub.failed.connect(_on_failed)
@@ -40,8 +41,18 @@ func start(fragment := "") -> void:
 		_on_join(_saved_name(), code)
 
 
+## The invite or room code in the page address's # part, or "".
 static func _join_code_in(fragment: String) -> String:
-	return InviteCodec.extract_code(fragment) if fragment.begins_with(InviteCodec.JOIN_KEY + "=") else ""
+	if fragment.begins_with(InviteCodec.JOIN_KEY + "="):
+		return InviteCodec.extract_code(fragment)
+	if fragment.begins_with(RoomCode.LINK_KEY + "="):
+		return RoomCode.normalize(fragment)
+	return ""
+
+
+func _process(_delta: float) -> void:
+	if _screen is NetJoinScreen and hub != null and hub.session == null and hub.signaling != null:
+		(_screen as NetJoinScreen).show_search(hub.status())
 
 
 static func _saved_name() -> String:
@@ -78,8 +89,7 @@ func _show_menu(message := "") -> void:
 
 
 func _on_host(player_name: String) -> void:
-	hub.host_room(player_name)
-	_wire_session()
+	hub.host_room(player_name)  # Its session_started wires the session.
 	_show_lobby()
 
 
@@ -89,10 +99,11 @@ func _on_join(player_name: String, text: String) -> void:
 		if _screen is NetMenuScreen:
 			(_screen as NetMenuScreen).show_message(error)
 		return
-	_wire_session()
 	var join := NetJoinScreen.new()
 	_swap(join)
 	join.cancelled.connect(_leave)
+	if hub.session == null:
+		join.show_search(hub.status())  # By room code: the trackers answer later.
 
 
 func _wire_session() -> void:
@@ -106,6 +117,8 @@ func _show_lobby() -> void:
 	var lobby := NetLobbyScreen.new()
 	_swap(lobby)
 	lobby.bind(hub.session)
+	if not hub.room_code.is_empty():
+		lobby.show_room(hub.room_code, RoomCode.link_for(WebPage.url(), hub.room_code))
 	lobby.invite_requested.connect(hub.create_invite)
 	lobby.reply_pasted.connect(_on_reply_pasted)
 	lobby.leave_requested.connect(_leave)

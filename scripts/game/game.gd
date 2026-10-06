@@ -103,10 +103,16 @@ func show_start() -> void:
 
 ## After the first click: an invite link in the page's address goes straight to joining, anything else to the title.
 func _open_first_screen() -> void:
-	if WebPage.fragment().begins_with(InviteCodec.JOIN_KEY + "="):
+	if _fragment_joins():
 		show_multiplayer()
 	else:
 		show_title()
+
+
+## The page address carries an invite or a room code to join.
+func _fragment_joins() -> bool:
+	var fragment := WebPage.fragment()
+	return fragment.begins_with(InviteCodec.JOIN_KEY + "=") or fragment.begins_with(RoomCode.LINK_KEY + "=")
 
 
 ## Multiplayer: the front page, joining, the lobby and the fight (NetFlow). Back leaves for the title.
@@ -120,7 +126,7 @@ func show_multiplayer() -> void:
 	_replace_screen(flow)
 	var fragment := WebPage.fragment()
 	flow.start(fragment)
-	if fragment.begins_with(InviteCodec.JOIN_KEY + "="):
+	if _fragment_joins():
 		WebPage.clear_fragment()
 
 

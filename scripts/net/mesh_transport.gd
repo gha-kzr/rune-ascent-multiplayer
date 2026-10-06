@@ -74,13 +74,24 @@ func complete_invite(remote_id: int, answer_blob: String) -> void:
 		factory.complete(link, answer_blob)
 
 
-## Accepts an invite from `inviter_id`; `on_ready(answer_blob)` gets what to send back.
-func accept_invite(inviter_id: int, offer_blob: String, on_ready: Callable) -> void:
-	joins_the_mesh = true
-	var link := factory.answer(inviter_id, offer_blob, on_ready)
+## Accepts an offer from `remote_id`; `on_ready(answer_blob)` gets what to send back. A newcomer (the default)
+## then builds the rest of the mesh; a player who already is in the match (answering a joiner) doesn't.
+func accept_invite(remote_id: int, offer_blob: String, on_ready: Callable, newcomer := true) -> void:
+	joins_the_mesh = joins_the_mesh or newcomer
+	var link := factory.answer(remote_id, offer_blob, on_ready)
 	if link != null:
-		_watch(link, inviter_id)
-		_building[inviter_id] = [link, _clock]  # Polled (its answer is made while polling) until it opens.
+		_watch(link, remote_id)
+		_building[remote_id] = [link, _clock]  # Polled (its answer is made while polling) until it opens.
+
+
+## A link this player offered before it knew its seat (joining through a tracker): now the host has
+## answered, so the player has its seat id and the link has its remote end.
+func adopt_offered_link(link: NetLink, remote_id: int, local_player_id: int, answer_blob: String) -> void:
+	_id = local_player_id
+	joins_the_mesh = true
+	_watch(link, remote_id)
+	_building[remote_id] = [link, _clock]
+	factory.complete(link, answer_blob)
 
 
 # --- Sending --------------------------------------------------------------------------------

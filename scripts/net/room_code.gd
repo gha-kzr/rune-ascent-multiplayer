@@ -67,8 +67,10 @@ static func random_peer_id() -> String:
 	return binary_string(Crypto.new().generate_random_bytes(20))
 
 
+## One character per byte (32 to 255): no control characters, so the text is safe in any JSON, and no
+## zero byte, which can't be a character. The same on every peer.
 static func binary_string(bytes: PackedByteArray) -> String:
 	var text := ""
 	for value in bytes:
-		text += String.chr(value)
+		text += String.chr(32 + value % 224)
 	return text

@@ -418,6 +418,9 @@ msgstr "Commun"
 msgid "Connect the player"
 msgstr "Connecter le joueur"
 
+msgid "Connected relays: %s"
+msgstr "Relais connectés : %s"
+
 msgid "Connecting... the player appears in the list when it works."
 msgstr "Connexion en cours... le joueur apparaît dans la liste quand ça marche."
 
@@ -438,6 +441,9 @@ msgstr "Copier le lien d'invitation"
 
 msgid "Copy the reply link"
 msgstr "Copier le lien de réponse"
+
+msgid "Copy the room link"
+msgstr "Copier le lien de la salle"
 
 msgid "Crater"
 msgstr "Cratère"
@@ -498,6 +504,9 @@ msgstr "Termine votre tour tout seul quand un héros ne peut ni se déplacer ni 
 
 msgid "Enemies (they take the board's spawns)"
 msgstr "Ennemis (ils prennent les apparitions du plateau)"
+
+msgid "Enter a room code or paste an invite first."
+msgstr "Saisissez d'abord un code de salle ou collez une invitation."
 
 msgid "Epic"
 msgstr "Épique"
@@ -609,6 +618,9 @@ msgstr "Couronne de concentration"
 
 msgid "Found: %s."
 msgstr "Trouvé : %s."
+
+msgid "Friends can join with the room code. If that doesn't work for them (a strict network), make an invite, send the link, then paste the reply they send back: each player needs their own invite."
+msgstr "Vos amis peuvent rejoindre avec le code de la salle. Si cela ne marche pas pour eux (réseau strict), créez une invitation, envoyez le lien, puis collez la réponse qu'ils renvoient : chaque joueur a besoin de sa propre invitation."
 
 msgid "From floor %d"
 msgstr "À partir de l'étage %d"
@@ -727,9 +739,6 @@ msgstr "Initiative : plus elle est haute, plus l'unité joue tôt."
 msgid "Instant (skip animations)"
 msgstr "Instantané (sans animations)"
 
-msgid "Invite link or code"
-msgstr "Lien ou code d'invitation"
-
 msgid "Invite players"
 msgstr "Inviter des joueurs"
 
@@ -807,6 +816,9 @@ msgstr "Ligne"
 msgid "Loadout: the spells brought to a fight (slot 1 is key 1)"
 msgstr "Sélection : les sorts emmenés au combat (l'emplacement 1 est la touche 1)"
 
+msgid "Looking for the room... The host answers as soon as they see you."
+msgstr "Recherche de la salle... L'hôte répond dès qu'il vous voit."
+
 msgid "Lose now"
 msgstr "Perdre"
 
@@ -815,9 +827,6 @@ msgstr "Mage"
 
 msgid "Make an invite"
 msgstr "Créer une invitation"
-
-msgid "Make an invite, send the link to a friend, then paste the reply they send back. Each player needs their own invite."
-msgstr "Créez une invitation, envoyez le lien à un ami, puis collez la réponse qu'il vous renvoie. Chaque joueur a besoin de sa propre invitation."
 
 msgid "Map and rules"
 msgstr "Carte et règles"
@@ -956,12 +965,6 @@ msgstr "désynchronisé de l'hôte"
 
 msgid "Party"
 msgstr "Équipe"
-
-msgid "Paste an invite first."
-msgstr "Collez d'abord une invitation."
-
-msgid "Paste the invite link or code the host sent you. You will get a reply to send back to them."
-msgstr "Collez le lien ou le code d'invitation envoyé par l'hôte. Vous obtiendrez une réponse à lui renvoyer."
 
 msgid "Paste the reply link or code here"
 msgstr "Collez ici le lien ou le code de réponse"
@@ -1164,6 +1167,12 @@ msgstr "Résistance : pourcentage de dégâts en moins d'un type (jamais plus de
 
 msgid "Role: %s"
 msgstr "Rôle : %s"
+
+msgid "Room code, or invite link"
+msgstr "Code de salle, ou lien d'invitation"
+
+msgid "Room code: %s"
+msgstr "Code de la salle : %s"
 
 msgid "Round %d"
 msgstr "Round %d"
@@ -1387,6 +1396,9 @@ msgstr "Poussée"
 msgid "Swift Stride"
 msgstr "Foulée rapide"
 
+msgid "Taking long? Ask the host for an invite link instead."
+msgstr "Ça prend du temps ? Demandez plutôt un lien d'invitation à l'hôte."
+
 msgid "Tank"
 msgstr "Tank"
 
@@ -1530,6 +1542,9 @@ msgstr "Ordre de jeu"
 
 msgid "Turn: %d s"
 msgstr "Tour : %d s"
+
+msgid "Type the room code the host gave you (or paste their room link). With an invite link instead, you will get a reply to send back to them."
+msgstr "Saisissez le code de salle donné par l'hôte (ou collez son lien de salle). Avec un lien d'invitation, vous obtiendrez une réponse à lui renvoyer."
 
 msgid "UI scale"
 msgstr "Échelle de l'interface"

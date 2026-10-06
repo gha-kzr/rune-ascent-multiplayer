@@ -73,5 +73,16 @@ func show_reply(code: String, link: String) -> void:
 	_copy_code.disabled = false
 
 
+## Waiting for a room found through the trackers ("2/2" connected, or "" before the first).
+func show_search(trackers: String) -> void:
+	_reply.visible = false
+	_copy_link.visible = false
+	_copy_code.visible = false
+	_status.text = tr("Looking for the room... The host answers as soon as they see you.")
+	if not trackers.is_empty():
+		_status.text += "\n" + tr("Connected relays: %s") % trackers
+	_status.text += "\n" + tr("Taking long? Ask the host for an invite link instead.")
+
+
 func show_message(text: String) -> void:
 	_status.text = text
