@@ -96,12 +96,12 @@ func is_over() -> bool:
 ## "" when the match could start now, else why not.
 func start_problem() -> String:
 	if phase != Phase.LOBBY:
-		return "the match has started"
+		return TranslationServer.translate("the match has started")
 	if seats_on(0).is_empty() or seats_on(1).is_empty():
-		return "each side needs a player"
+		return TranslationServer.translate("each side needs a player")
 	for id in seats:
 		if not seats[id].ready:
-			return "everyone must be ready"
+			return TranslationServer.translate("everyone must be ready")
 	return ""
 
 
@@ -157,11 +157,11 @@ func _join(entry: Dictionary) -> String:
 			existing.returning = true
 		return ""
 	if phase != Phase.LOBBY:
-		return "the match has started"
+		return TranslationServer.translate("the match has started")
 	if seats.has(id):
-		return "seat taken"
+		return TranslationServer.translate("that seat is taken")
 	if seats.size() >= MAX_PER_SIDE * 2:
-		return "the match is full"
+		return TranslationServer.translate("the match is full")
 	var seat := Seat.new()
 	seat.id = id
 	seat.token = token

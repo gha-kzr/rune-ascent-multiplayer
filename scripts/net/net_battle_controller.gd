@@ -154,7 +154,8 @@ func _sync_labels() -> void:
 
 func _on_rejected(reason: String) -> void:
 	_awaiting = false
-	hud.show_banner(reason)
+	push_warning("NetBattle: refused: %s" % reason)
+	hud.show_banner(tr("That isn't possible right now."))
 	if not _busy:
 		_begin_next()
 

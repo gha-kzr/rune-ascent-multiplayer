@@ -619,6 +619,10 @@ msgstr ""
 msgid "Dread"
 msgstr ""
 
+#: scripts/net/match_state.gd
+msgid "each side needs a player"
+msgstr ""
+
 #: scripts/progression/qa_tools.gd
 msgid "edge layout"
 msgstr ""
@@ -673,6 +677,10 @@ msgstr ""
 
 #: scripts/game/game.gd
 msgid "Every stage is cleared."
+msgstr ""
+
+#: scripts/net/match_state.gd
+msgid "everyone must be ready"
 msgstr ""
 
 #: scripts/progression/qa_tools.gd
@@ -1077,6 +1085,18 @@ msgstr ""
 msgid "Map and rules"
 msgstr ""
 
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Map number"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Map shape"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Map size"
+msgstr ""
+
 #: data/statuses/marked.tres
 msgid "Marked"
 msgstr ""
@@ -1235,6 +1255,10 @@ msgstr ""
 
 #: data/units/orc_guard.tres
 msgid "Orc Guard"
+msgstr ""
+
+#: scripts/net/match_session.gd
+msgid "out of step with the host"
 msgstr ""
 
 #: scripts/game/run_screen.gd scenes/game/party_screen.tscn
@@ -1453,6 +1477,10 @@ msgstr ""
 msgid "Ready"
 msgstr ""
 
+#: scripts/game/net/net_lobby_screen.gd
+msgid "ready"
+msgstr ""
+
 #: scripts/view/hud.gd
 msgid "Ready (%s)"
 msgstr ""
@@ -1590,6 +1618,14 @@ msgid "Save reset."
 msgstr ""
 
 #: scripts/game/net/net_lobby_screen.gd
+msgid "Seconds before the AI replaces a player who left"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Seconds per turn"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
 msgid "Send this link to the player. When they send a reply back, paste it below."
 msgstr ""
 
@@ -1631,6 +1667,10 @@ msgstr ""
 
 #: scripts/game/net/net_lobby_screen.gd
 msgid "Side A"
+msgstr ""
+
+#: scripts/game/net/net_lobby_screen.gd
+msgid "Side B"
 msgstr ""
 
 #: scripts/view/hud.gd
@@ -1825,6 +1865,10 @@ msgstr ""
 msgid "That hero isn't available."
 msgstr ""
 
+#: scripts/net/net_battle_controller.gd
+msgid "That isn't possible right now."
+msgstr ""
+
 #: scripts/progression/settings_applier.gd
 msgid "That key can't be used."
 msgstr ""
@@ -1843,6 +1887,14 @@ msgstr ""
 
 #: scripts/progression/profile.gd
 msgid "That rune's effect is flat: it has no levels to fuse."
+msgstr ""
+
+#: scripts/net/match_session.gd
+msgid "that seat belongs to someone else"
+msgstr ""
+
+#: scripts/net/match_state.gd
+msgid "that seat is taken"
 msgstr ""
 
 #: scripts/progression/profile.gd
@@ -1873,12 +1925,28 @@ msgstr ""
 msgid "The floor's own"
 msgstr ""
 
+#: scripts/net/match_session.gd
+msgid "the game state differs from the host's (desync)"
+msgstr ""
+
+#: scripts/net/match_state.gd
+msgid "the match has started"
+msgstr ""
+
+#: scripts/net/match_state.gd
+msgid "the match is full"
+msgstr ""
+
 #: scripts/game/net/net_lobby_screen.gd
 msgid "The match is going on."
 msgstr ""
 
 #: scripts/game/net/net_lobby_screen.gd
 msgid "The match is over: waiting for the host to open a new lobby."
+msgstr ""
+
+#: scripts/net/match_session.gd
+msgid "the match refused you"
 msgstr ""
 
 #: scripts/run/run_director.gd

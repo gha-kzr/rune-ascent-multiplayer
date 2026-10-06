@@ -18,7 +18,7 @@ static func hero_count() -> int:
 
 ## The hero's name for the lobby.
 static func hero_name(hero_index: int) -> String:
-	return roster().heroes[hero_index].display_name()
+	return TranslationServer.translate(roster().heroes[hero_index].display_name())
 
 
 ## The hero's unit and its permanent modifiers at the PvP strength.

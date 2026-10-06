@@ -219,7 +219,7 @@ func _on_message(from: int, message: Dictionary) -> void:
 		"entries": _on_entries(from, message)
 		"submit": _on_submit(from, message.get("p"))
 		"reject": _on_reject(message)
-		"refused": _halt(str(message.get("why", "the match refused you")))
+		"refused": _halt(str(message.get("why", TranslationServer.translate("the match refused you"))))
 		"redirect": _on_redirect(message)
 		"pull": _on_pull(from, message.get("from"))
 		"elected": _on_elected(from, message.get("host"), message.get("have"))
@@ -237,7 +237,7 @@ func _on_hello(from: int, message: Dictionary) -> void:
 		return
 	var existing := state.seat_for_token(token)
 	if existing != null and existing.id != from:
-		transport.send(from, {"m": "refused", "why": "that seat belongs to someone else"})
+		transport.send(from, {"m": "refused", "why": TranslationServer.translate("that seat belongs to someone else")})
 		return
 	var error := _host_submit(from, {"k": "join", "id": from, "name": message.get("name", ""), "token": token}, true)
 	if not error.is_empty():
@@ -279,10 +279,10 @@ func _on_entry(from: int, entry: Variant) -> void:
 		return
 	var error := state.apply(entry)
 	if not error.is_empty():
-		_halt("out of step with the host (%s)" % error)
+		_halt(TranslationServer.translate("out of step with the host") + " (%s)" % error)
 		return
 	if entry.has("h") and entry["h"] != state.fingerprint():
-		_halt("the game state differs from the host's (desync at entry %d)" % number)
+		_halt(TranslationServer.translate("the game state differs from the host's (desync)") + " #%d" % number)
 		return
 	_after_applied(entry)
 

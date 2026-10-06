@@ -472,6 +472,9 @@ msgstr "Affichage"
 msgid "Dread"
 msgstr "Effroi"
 
+msgid "each side needs a player"
+msgstr "chaque camp doit avoir un joueur"
+
 msgid "edge layout"
 msgstr "disposition face à face"
 
@@ -513,6 +516,9 @@ msgstr "Tous les héros sont maintenant niveau %d."
 
 msgid "Every stage is cleared."
 msgstr "Toutes les épreuves sont terminées."
+
+msgid "everyone must be ready"
+msgstr "tout le monde doit être prêt"
 
 msgid "facing edges"
 msgstr "bords opposés"
@@ -816,6 +822,15 @@ msgstr "Créez une invitation, envoyez le lien à un ami, puis collez la répons
 msgid "Map and rules"
 msgstr "Carte et règles"
 
+msgid "Map number"
+msgstr "Numéro de carte"
+
+msgid "Map shape"
+msgstr "Forme de la carte"
+
+msgid "Map size"
+msgstr "Taille de la carte"
+
 msgid "Marked"
 msgstr "Marqué"
 
@@ -935,6 +950,9 @@ msgstr "Les cases orange peuvent être ciblées. Cliquez sur un ennemi pour lui 
 
 msgid "Orc Guard"
 msgstr "Garde orque"
+
+msgid "out of step with the host"
+msgstr "désynchronisé de l'hôte"
 
 msgid "Party"
 msgstr "Équipe"
@@ -1099,6 +1117,9 @@ msgstr "Atteignez l'étage 40 de la tour."
 msgid "Ready"
 msgstr "Prêt"
 
+msgid "ready"
+msgstr "prêt"
+
 msgid "Ready (%s)"
 msgstr "Prêt (%s)"
 
@@ -1201,6 +1222,12 @@ msgstr "%s recyclé : +%d essence."
 msgid "Save reset."
 msgstr "Sauvegarde effacée."
 
+msgid "Seconds before the AI replaces a player who left"
+msgstr "Secondes avant que l'IA remplace un joueur parti"
+
+msgid "Seconds per turn"
+msgstr "Secondes par tour"
+
 msgid "Send this link to the player. When they send a reply back, paste it below."
 msgstr "Envoyez ce lien au joueur. Quand il vous renvoie une réponse, collez-la ci-dessous."
 
@@ -1233,6 +1260,9 @@ msgstr "Réafficher les astuces"
 
 msgid "Side A"
 msgstr "Camp A"
+
+msgid "Side B"
+msgstr "Camp B"
 
 msgid "Side view (%s)"
 msgstr "Vue de côté (%s)"
@@ -1378,6 +1408,9 @@ msgstr "Se téléporte sur la case ciblée"
 msgid "That hero isn't available."
 msgstr "Ce héros n'est pas disponible."
 
+msgid "That isn't possible right now."
+msgstr "Ce n'est pas possible pour le moment."
+
 msgid "That key can't be used."
 msgstr "Cette touche ne peut pas être utilisée."
 
@@ -1392,6 +1425,12 @@ msgstr "Cet emplacement de rune n'est pas libre."
 
 msgid "That rune's effect is flat: it has no levels to fuse."
 msgstr "L'effet de cette rune est fixe : elle n'a pas de niveaux à fusionner."
+
+msgid "that seat belongs to someone else"
+msgstr "cette place appartient à quelqu'un d'autre"
+
+msgid "that seat is taken"
+msgstr "cette place est prise"
 
 msgid "That spell can't go there."
 msgstr "Ce sort ne peut pas aller là."
@@ -1414,11 +1453,23 @@ msgstr "La rencontre de l'étage est invalide : %s"
 msgid "The floor's own"
 msgstr "Celui de l'étage"
 
+msgid "the game state differs from the host's (desync)"
+msgstr "l'état de la partie diffère de celui de l'hôte (désynchronisation)"
+
+msgid "the match has started"
+msgstr "la partie a déjà commencé"
+
+msgid "the match is full"
+msgstr "la partie est pleine"
+
 msgid "The match is going on."
 msgstr "La partie est en cours."
 
 msgid "The match is over: waiting for the host to open a new lobby."
 msgstr "La partie est finie : en attente que l'hôte ouvre un nouveau salon."
+
+msgid "the match refused you"
+msgstr "la partie vous a refusé"
 
 msgid "The party is fully healed."
 msgstr "L'équipe est entièrement soignée."

@@ -43,14 +43,14 @@ func bind(match_session: MatchSession) -> void:
 
 
 func _build() -> void:
-	set_anchors_preset(Control.PRESET_FULL_RECT)
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var background := ColorRect.new()
 	background.color = Color(0.1, 0.11, 0.14)
 	background.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	background.set_anchors_preset(Control.PRESET_FULL_RECT)
+	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(background)
 	var margin := MarginContainer.new()
-	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
+	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for side in ["left", "right"]:
 		margin.add_theme_constant_override("margin_" + side, 24)
 	for side in ["top", "bottom"]:
@@ -126,10 +126,10 @@ func _build_settings(parent: Control) -> void:
 	for index in MatchState.TYPOLOGIES.size():
 		_typology.add_item(_typology_name(MatchState.TYPOLOGIES[index]), index)
 	_typology.item_selected.connect(func(index: int) -> void: session.configure("typology", MatchState.TYPOLOGIES[index]))
-	_labelled("Map shape", _typology, parent)
+	_labelled(tr("Map shape"), _typology, parent)
 	_size = _spin(PvpMap.MIN_SIZE, PvpMap.MAX_SIZE, "Size")
 	_size.value_changed.connect(func(value: float) -> void: session.configure("size", int(value)))
-	_labelled("Map size", _size, parent)
+	_labelled(tr("Map size"), _size, parent)
 	_seed = LineEdit.new()
 	_seed.name = "Seed"
 	_seed.custom_minimum_size = Vector2(120, 0)
@@ -140,13 +140,13 @@ func _build_settings(parent: Control) -> void:
 	var seed_row := HBoxContainer.new()
 	seed_row.add_child(_seed)
 	seed_row.add_child(new_seed)
-	_labelled("Map number", seed_row, parent)
+	_labelled(tr("Map number"), seed_row, parent)
 	_turn = _spin(10, 120, "Turn")
 	_turn.value_changed.connect(func(value: float) -> void: session.configure("turn", int(value)))
-	_labelled("Seconds per turn", _turn, parent)
+	_labelled(tr("Seconds per turn"), _turn, parent)
 	_grace = _spin(0, 120, "Grace")
 	_grace.value_changed.connect(func(value: float) -> void: session.configure("grace", int(value)))
-	_labelled("Seconds before the AI replaces a player who left", _grace, parent)
+	_labelled(tr("Seconds before the AI replaces a player who left"), _grace, parent)
 	_settings_fields = [_typology, _size, _seed, new_seed, _turn, _grace]
 
 
@@ -238,14 +238,14 @@ func refresh() -> void:
 	_refresh_invite_options(in_lobby)
 	_start.visible = is_host
 	_start.disabled = not in_lobby or not state.start_problem().is_empty()
-	_start.tooltip_text = TranslationServer.translate(state.start_problem()) if not state.start_problem().is_empty() else ""
+	_start.tooltip_text = state.start_problem()
 	if not in_lobby:
 		_banner.text = tr("The match is over: waiting for the host to open a new lobby.") if state.is_over() else tr("The match is going on.")
 	elif not is_host:
 		_banner.text = tr("Waiting for the host to start. Pick your hero and side, then press Ready.")
 	else:
 		var problem := state.start_problem()
-		_banner.text = tr("You are the host: start when everyone is ready.") if problem.is_empty() else tr("You are the host. Not ready to start yet: %s.") % tr(problem)
+		_banner.text = tr("You are the host: start when everyone is ready.") if problem.is_empty() else tr("You are the host. Not ready to start yet: %s.") % problem
 
 
 func _rename(text: String) -> void:
@@ -283,7 +283,7 @@ func _refresh_players(in_lobby: bool) -> void:
 			row.add_child(ready)
 		else:
 			var info := Label.new()
-			info.text = "%s · %s%s" % [PvpHeroes.hero_name(seat.hero), "Side A" if seat.side == 0 else "Side B", " · ready" if seat.ready and in_lobby else ""]
+			info.text = "%s · %s%s" % [PvpHeroes.hero_name(seat.hero), tr("Side A") if seat.side == 0 else tr("Side B"), " · " + tr("ready") if seat.ready and in_lobby else ""]
 			row.add_child(info)
 		_players.add_child(row)
 
@@ -315,7 +315,7 @@ func _side_buttons(seat: MatchState.Seat) -> HBoxContainer:
 	for side in 2:
 		var button := Button.new()
 		button.name = "Side%s" % ("A" if side == 0 else "B")
-		button.text = "Side A" if side == 0 else "Side B"
+		button.text = tr("Side A") if side == 0 else tr("Side B")
 		button.toggle_mode = true
 		button.button_pressed = seat.side == side
 		button.pressed.connect(func() -> void: session.set_field("side", side))
