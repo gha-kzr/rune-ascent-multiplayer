@@ -82,6 +82,10 @@ func _ready() -> void:
 	tutorial = Tutorial.new(settings)
 	SettingsApplier.apply(settings, get_window(), false)
 	_mute_button.show_muted(settings.muted)
+	if WebPage.query("e2e") == "1":  # Browser tests drive the game through this (see E2eHook).
+		var hook := E2eHook.new()
+		hook.game = self
+		add_child(hook)
 	if require_click_to_start:
 		show_start()
 	else:

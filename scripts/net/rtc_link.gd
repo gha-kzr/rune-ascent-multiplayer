@@ -8,6 +8,8 @@ extends NetLink
 ## Both ends make the same channel (negotiated, id 1), so there is nothing to wait for but "open".
 
 const STUN_URLS: Array[String] = ["stun:stun.l.google.com:19302", "stun:stun1.l.google.com:19302", "stun:stun.cloudflare.com:3478"]
+## False for local tests (no traffic to the public servers: same-machine players find each other without them).
+static var use_stun := true
 ## How long to collect candidates once the first description exists, at most.
 const GATHER_MAX_MSEC := 4000
 ## The link gives up when it isn't open this long after both sides have what they need.
@@ -86,7 +88,8 @@ func poll() -> void:
 
 func _setup() -> bool:
 	_connection = WebRTCPeerConnection.new()
-	var error := _connection.initialize({"iceServers": [{"urls": STUN_URLS}]})
+	var servers: Array = [{"urls": STUN_URLS}] if use_stun else []
+	var error := _connection.initialize({"iceServers": servers})
 	if error != OK:
 		push_warning("RtcLink: WebRTC isn't available here (%s)" % error_string(error))
 		_mark_closed()
