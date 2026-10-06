@@ -38,6 +38,7 @@ func host_room(name_: String) -> void:
 	transport = MeshTransport.new(factory, 1)
 	session = MatchSession.open_as_host(transport, name_, token)
 	session.halted.connect(failed.emit)
+	_store_token()  # So a host who comes back (a reload, a crash) gets seat 1 again.
 
 
 ## Asks for an invite for a new player, or (`for_seat` > 0) for a player coming back to their seat. Any player

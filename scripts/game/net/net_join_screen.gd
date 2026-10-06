@@ -71,7 +71,6 @@ func show_reply(code: String, link: String) -> void:
 	_reply.text = link
 	_copy_link.disabled = false
 	_copy_code.disabled = false
-	WebPage.copy(link)
 
 
 func show_message(text: String) -> void:

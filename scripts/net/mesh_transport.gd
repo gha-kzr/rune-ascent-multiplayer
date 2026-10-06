@@ -80,6 +80,7 @@ func accept_invite(inviter_id: int, offer_blob: String, on_ready: Callable) -> v
 	var link := factory.answer(inviter_id, offer_blob, on_ready)
 	if link != null:
 		_watch(link, inviter_id)
+		_building[inviter_id] = [link, _clock]  # Polled (its answer is made while polling) until it opens.
 
 
 # --- Sending --------------------------------------------------------------------------------

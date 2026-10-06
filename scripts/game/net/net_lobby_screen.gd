@@ -389,7 +389,6 @@ func show_invite(code: String, link: String) -> void:
 	_reply.text = ""
 	_reply.show()
 	_connect.show()
-	WebPage.copy(link)
 
 
 func show_invite_message(text: String) -> void:
