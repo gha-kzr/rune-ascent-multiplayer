@@ -101,13 +101,14 @@ func _listen() -> void:
 func _status() -> Dictionary:
 	var hub := _hub()
 	if hub == null or hub.session == null:
-		return {"in_match": false, "screen": game.screen.get_class() if game.screen != null else ""}
+		return {"in_match": false, "room": hub.room_code if hub != null else "", "relays": hub.status() if hub != null else "",
+				"screen": game.screen.get_class() if game.screen != null else ""}
 	var session := hub.session
 	var seats := []
 	for id in session.state.seat_ids():
 		var seat := session.state.seats[id]
 		seats.append({"id": id, "name": seat.name, "connected": seat.connected, "ai": seat.ai, "side": seat.side, "hero": seat.hero, "ready": seat.ready})
-	return {"in_match": true, "my_id": session.my_id, "host_id": session.host_id, "synced": session.is_synced, "halted": session.halt_reason,
+	return {"in_match": true, "room": hub.room_code, "relays": hub.status(), "my_id": session.my_id, "host_id": session.host_id, "synced": session.is_synced, "halted": session.halt_reason,
 			"phase": session.state.phase, "entries": session.state.entry_count(), "fingerprint": session.state.fingerprint(),
 			"peers": session.peers(), "direct": hub.transport.direct_ids(), "seats": seats, "my_turn": session.is_my_turn(),
 			"started": session.state.battle != null and session.state.battle.state.started,
