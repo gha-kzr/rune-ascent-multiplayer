@@ -1,6 +1,17 @@
 # Rune Ascent: multiplayer fork
 
-An attempt at turning [Rune Ascent](https://github.com/gha-kzr/rune-ascent) multiplayer. This repository is a clone of it (`git remote` `upstream`; take its fixes with `git fetch upstream && git merge upstream/main`), with its own save folder (`rune-ascent-multiplayer`). Network code goes in `scripts/net/`; the rules layer is kept as it is so upstream merges stay clean. Everything below is the original game's README.
+**Multiplayer PvP for [Rune Ascent](https://github.com/gha-kzr/rune-ascent)**, playable in the browser from a static page (GitHub Pages): no server, no worker, nothing to install. Players connect to each other directly (WebRTC); one of them is the host, and if the host leaves another takes over. This repository is a clone of the original game (`upstream` remote; take its fixes with `git fetch upstream && git merge upstream/main`), with its own save folder (`rune-ascent-multiplayer`). The full explanation is in [`docs/multiplayer.md`](docs/multiplayer.md); the original game's README follows the quick start.
+
+## Multiplayer quick start
+
+1. Open the web build (the title's **Play** opens multiplayer). **Host a match**: you get a **room code** (and a link) to share.
+2. A friend opens the page, types the room code (or opens the room link) and is in your lobby within seconds.
+3. In the lobby each player picks **one hero** (Knight, Mage or Ranger) and a **side** (up to 4 per side), the host picks the map shape, size and number (a preview shows the map from above), the seconds per turn and how long the AI waits before it replaces a player who left. Everyone presses **Ready**, the host presses **Start**.
+4. Each player places their hero in their side's start zone, presses Ready, and the fight begins. Heroes have the strength of a level-30 hero with a full kit and no runes; levels are not shown.
+5. If someone drops out, the AI plays their hero after the grace time (the players panel marks it "(AI)"); they can come back with the same room code and get their hero back at the start of its next turn. Any player can also hand their hero to the AI to let it finish the fight.
+6. If the room code does not work for someone (a strict network), the lobby's **Make an invite** gives a link to send; they send a reply back and the host pastes it. That path needs no third party at all.
+
+For development: `godot --headless --script res://tests/run_tests.gd` (the network is faked in tests), and `tools/e2e/run.sh` plays whole matches between real Chrome tabs.
 
 A turn-based tactical roguelite made with a Godot 4.7 project and an AI agent (the repository, the folder and the save folder are all `rune-ascent`; `application/config/custom_user_dir_name` sets the save folder).
 
