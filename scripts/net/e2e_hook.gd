@@ -40,7 +40,8 @@ func _on_command(args: Array) -> void:
 func _run(command: String, args: Array) -> Variant:
 	match command:
 		"open":
-			game.show_multiplayer()
+			game.show_multiplayer()  # An invite in the page's address joins from here.
+			_listen()
 			return true
 		"host":
 			_flow()._on_host(str(args[0]))

@@ -12,6 +12,8 @@ const STUN_URLS: Array[String] = ["stun:stun.l.google.com:19302", "stun:stun1.l.
 static var use_stun := true
 ## How long to collect candidates once the first description exists, at most.
 const GATHER_MAX_MSEC := 4000
+## Candidates stop coming: the blob is complete this long after the last one.
+const GATHER_QUIET_MSEC := 1200
 ## The link gives up when it isn't open this long after both sides have what they need.
 const OPEN_TIMEOUT_MSEC := 30000
 
@@ -22,6 +24,7 @@ var _description := {}
 var _on_ready := Callable()
 var _blob_sent := false
 var _gather_started := 0
+var _last_candidate := 0
 var _awaiting_since := 0
 
 
@@ -111,6 +114,7 @@ func _on_description(type: String, sdp: String) -> void:
 
 func _on_candidate(media: String, index: int, candidate_name: String) -> void:
 	_candidates.append([media, index, candidate_name])
+	_last_candidate = Time.get_ticks_msec()
 
 
 ## Hands the blob out once every candidate is in (or the wait is over).
@@ -119,7 +123,8 @@ func _check_blob() -> void:
 		return
 	var waited := Time.get_ticks_msec() - _gather_started
 	var done := _connection.get_gathering_state() == WebRTCPeerConnection.GATHERING_STATE_COMPLETE
-	if done or (not _candidates.is_empty() and waited > GATHER_MAX_MSEC) or waited > GATHER_MAX_MSEC * 3:
+	var quiet := not _candidates.is_empty() and Time.get_ticks_msec() - _last_candidate > GATHER_QUIET_MSEC
+	if done or quiet or (not _candidates.is_empty() and waited > GATHER_MAX_MSEC) or waited > GATHER_MAX_MSEC * 3:
 		_blob_sent = true
 		_awaiting_since = Time.get_ticks_msec()
 		var blob := {"t": _description["t"], "s": _description["s"], "c": _candidates}

@@ -74,7 +74,7 @@ func join(name_: String, text: String) -> String:
 			or data.get("room") is not String or data.get("host") is not int or data.get("for") is not int:
 		return "That isn't an invite code or link."
 	var seat: int = data["for"]
-	if seat < 2 or seat > 99 or data["host"] < 1:
+	if seat < 1 or seat > 99 or data["host"] < 1 or data["host"] == seat:
 		return "That invite is not valid."
 	_reset()
 	player_name = name_
