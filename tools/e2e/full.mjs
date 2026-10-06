@@ -1,6 +1,6 @@
 import { launch, Player, sleep } from './cdp.mjs';
 
-const BASE = '' + (process.env.GAME_URL || 'http://127.0.0.1:8061/index.html') + '?e2e=1&stun=0';
+const BASE = '' + (process.env.GAME_URL || 'http://127.0.0.1:8061/index.html') + '?e2e=1' + (process.env.E2E_STUN === '1' ? '' : '&stun=0');
 const chrome = await launch();
 const log = (...a) => console.log(new Date().toISOString().slice(11, 19), ...a);
 const fail = (m) => { throw new Error(m); };

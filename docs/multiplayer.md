@@ -95,4 +95,4 @@ and settings live in the browser, separate from the original game's.
 - Up to 8 players (4 per side); no spectators; no chat.
 - A match needs a human host in a visible tab (browsers slow down background tabs); if the host leaves, another player takes over.
 - Without TURN some networks cannot connect (use another player as host, or an invite from someone who can reach both).
-- A host that is also the only human present stops the fight when it leaves, since nobody holds the match.
+- If every human leaves, the match is over: the log only lives in the players' browsers.
